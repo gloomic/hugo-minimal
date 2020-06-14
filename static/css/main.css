@@ -124,3 +124,17 @@ h1, h2, h3 {
 .navbar a.navbar-brand {
     color: var(--theme-color);
 }
+/* footer */
+footer {
+    padding: 16px;
+    background-color: #f9f9f9;
+    font-size: 14px;
+}
+footer nav>ul>li {
+    padding-right: 20px; /* fix footer nav layout, add padding to li instead of a */
+    color: #333;
+}
+footer nav>ul>li>a {
+    padding: 0 !important;
+    color: #333;
+}

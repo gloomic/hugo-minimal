@@ -1,9 +1,22 @@
         <footer>
-            <p class="copyright text-muted">{{ .Site.Params.copyright | default "&copy; All rights reserved. Powered by [Hugo](https://gohugo.io) and [Minimal](https://github.com/calintat/minimal)." | markdownify }}</p>
+            <!--p class="copyright text-muted"-->
+            <nav>
+                <ul class="nav nav-pills">
+                    {{ if isset .Site.Params "copyright" }}
+                        <li role="presentation">{{ .Site.Params.copyright }}</li>
+                    {{ else }}
+                        <li role="presentation">&copy; {{ now.Format "2006" }} {{ .Site.Title }}</li>
+                    {{ end }}
+
+                    {{ range .Site.Menus.footer }}
+                        <li role="presentation"><a href="{{ .URL }}">{{ .Name }}</a></li>
+                    {{ end }}
+                </ul>
+            </nav>
         </footer>
 
         {{ partial "body-close" . }}
-        
+
     </body>
 
 </html>
