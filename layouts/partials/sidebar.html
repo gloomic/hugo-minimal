@@ -1,0 +1,13 @@
+<section>
+    <nav class="section">
+    {{ range .Site.Data.sidebar }}
+        <h4 class="section-title">{{ .title }}</h4>
+        <ul>
+        {{ range .items }}
+            <li><a href="{{ .url }}">{{ .name }}</a></li>
+        {{ end }}
+        </ul>
+    {{ end }}
+    </nav>
+</section>
+ 
