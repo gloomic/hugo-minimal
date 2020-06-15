@@ -1,0 +1,11 @@
+{{ $page := .Get 0 }}
+{{ with .Site.GetPage $page }}
+<div id="{{ path.Base .RelPermalink }}" class="page-item">
+    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    {{ if .Params.originalURL }}
+        <div class="info">Original link: <a href="{{ .Params.originalURL }}"><span class="glyphicon glyphicon-link"></span> {{ $url := urls.Parse .Params.originalURL }}{{ $url.Host }}</a></div>
+    {{ end }}
+    <div align="start">{{ .Content }}</div>
+    <div class="info">{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }} {{ partial "tags" . }}</div>
+</div>
+{{ end }}
