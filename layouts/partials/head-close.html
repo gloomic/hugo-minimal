@@ -1,5 +1,6 @@
-<!--
-  This partial has been intentionally left empty.
-  Override this in your site to insert code just before the closing <head> tag.
-  For example, to install an analytics tracking package.
--->
+<meta name="description" content="{{if .IsHome}}{{ $.Site.Params.description }}{{else}}{{.Description}}{{end}}" />
+<meta name="keywords" content="{{ delimit .Keywords "," }}">
+<meta name="created" content="{{ .Date.Format "2006-01-02T15:04:05-0700" }}">
+<meta name="modified" content="{{ .Lastmod.Format "2006-01-02T15:04:05-0700" }}">
+{{ template "_internal/opengraph.html" . }}
+{{ template "_internal/twitter_cards.html" . }}
