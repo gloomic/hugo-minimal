@@ -11,7 +11,7 @@
         </div>
 
         <div align="start" class="content">{{ .Content }}</div>
-        <div class="info">{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }} {{ partial "tags" . }}</div>
+        <div class="info">{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }} {{ partial "tags" . }} {{ partial "share" . }}</div>
     </article>
 
 </main>

@@ -175,3 +175,19 @@ h4.section-title {
 .section a:hover {
     color: #333 !important;
 }
+/* share */
+.share {
+    float: right;
+}
+.share a.share-btn {
+    padding: 0 4px;
+}
+.share svg.share-icon {
+    fill: #777;
+    width: 20px;
+    height: 20px;
+}
+.share svg.share-icon.share-icon-facebook {
+    background: #777;
+    fill: #eee;
+}
