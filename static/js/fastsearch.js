@@ -1,5 +1,5 @@
 var fuse; // holds our search engine
-var searchVisible = false;
+var searchVisible = true;
 var firstRun = true; // allow us to delay loading json data unless search activated
 var list = document.getElementById('searchResults'); // targets the <ul>
 var first = list.firstChild; // first child of search list
@@ -7,39 +7,23 @@ var last = list.lastChild; // last child of search list
 var maininput = document.getElementById('searchInput'); // input box for search
 var resultsAvailable = false; // Did we get any search results?
 
+// Load json search index if first time invoking search
+// Means we don't load json unless searches are going to happen; keep user payload small unless needed
+if(firstRun) {
+  loadSearch(); // loads our json data and builds fuse.js search index
+  firstRun = false; // let's never do this again
+}
 // ==========================================
 // The main keyboard event listener running the show
 //
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keyup', function(event) {
 
-  // CMD-/ to show / hide Search
-  if (event.metaKey && event.which === 191) {
-      // Load json search index if first time invoking search
-      // Means we don't load json unless searches are going to happen; keep user payload small unless needed
-      if(firstRun) {
-        loadSearch(); // loads our json data and builds fuse.js search index
-        firstRun = false; // let's never do this again
-      }
-
-      // Toggle visibility of search box
-      if (!searchVisible) {
-        document.getElementById("fastSearch").style.visibility = "visible"; // show search box
-        document.getElementById("searchInput").focus(); // put focus in input box so you can just start typing
-        searchVisible = true; // search visible
-      }
-      else {
-        document.getElementById("fastSearch").style.visibility = "hidden"; // hide search box
-        document.activeElement.blur(); // remove focus from search box
-        searchVisible = false; // search not visible
-      }
-  }
-
-  // Allow ESC (27) to close search box
+  // Allow ESC (27) to clear search
   if (event.keyCode == 27) {
-    if (searchVisible) {
-      document.getElementById("fastSearch").style.visibility = "hidden";
-      document.activeElement.blur();
-      searchVisible = false;
+    document.getElementById("searchInput").value = '';
+    document.activeElement.blur();
+    if (resultsAvailable) {
+      document.getElementById("searchResults").innerHTML = "";
     }
   }
 
@@ -73,7 +57,6 @@ document.getElementById("searchInput").onkeyup = function(e) {
   executeSearch(this.value);
 }
 
-
 // ==========================================
 // fetch some json without jquery
 //
@@ -90,7 +73,6 @@ function fetchJSONFile(path, callback) {
   httpRequest.open('GET', path);
   httpRequest.send();
 }
-
 
 // ==========================================
 // load our search index, only executed once
@@ -114,7 +96,6 @@ function loadSearch() {
     fuse = new Fuse(data, options); // build the index from the json file
   });
 }
-
 
 // ==========================================
 // using the index we loaded on CMD-/, run
