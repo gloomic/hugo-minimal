@@ -136,7 +136,7 @@ footer nav>ul>li {
 }
 footer nav>ul>li>a {
     padding: 0 !important;
-    color: #333;
+    color: #333 !important;
 }
 /* page item */
 .page-item {
