@@ -34,13 +34,7 @@
                     </button>
                 </div>
                 <div class="collapse navbar-collapse">
-                    {{ if .Site.Menus.main }}
-                        <ul class="nav navbar-nav">
-                            {{ range sort .Site.Menus.main }}
-                                <li><a href="{{ .URL }}">{{ .Name }}</a></li>
-                            {{ end }}
-                        </ul>
-                    {{ end }}
+                    {{ partial "navbar-menu" . }}
                     {{ if .Site.Menus.icon }}
                         <ul class="nav navbar-nav navbar-right">
                             {{ range sort .Site.Menus.icon }}

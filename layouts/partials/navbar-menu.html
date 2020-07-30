@@ -1,0 +1,14 @@
+<ul class="nav navbar-nav">
+    {{ range .Site.Data.navbarmenu }}
+        <li {{ if .items }} class="dropdown" {{ end }}>
+            <a href="{{ .url }}">{{ .name }}</a>
+            {{ if .items }}
+                <ul class="dropdown-menu">
+                {{ range .items }}
+                    <li><a href="{{ .url }}">{{ .name }}</a></li>
+                {{ end }}
+                </ul>
+            {{ end }}
+        </li>
+    {{ end }}
+</ul>
