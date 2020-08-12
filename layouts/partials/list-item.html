@@ -17,7 +17,7 @@
     {{ with .Description }} {{ $.Scratch.Set "subheader" . }} {{ end }}
 
     <h4><a href="{{ .Scratch.Get "link" }}">{{ .Title }}</a></h4>
-    <h5>{{ $.Scratch.Get "subheader" }}</h5>
+    <p>{{ $.Scratch.Get "subheader" }}</p>
     {{ partial "tags" . }}
 
 </div>

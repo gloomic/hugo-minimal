@@ -3,7 +3,7 @@
 <main>
     <article>
         <div>
-            <h2>{{ .Title }}</h2>
+            <h1>{{ .Title }}</h1>
             {{ if .Params.originalURL }}
                 <div class="info">Original link: <a href="{{ .Params.originalURL }}"><span class="glyphicon glyphicon-link"></span> {{ $url := urls.Parse .Params.originalURL }}{{ $url.Host }}</a></div>
             {{ end }}
